@@ -4,6 +4,11 @@
 
 This repository provides a few examples on how to use Sbankens Open Banking APIs. These will enable you to quickly get started and get familiar with the basic concepts of authorization and API usage.
 
+### SampleApplication
+Simple .NET Core Console Application describing how to retrieve accessToken, customer and account information.
+
+### NodeClient
+Simple Node client which retrieves accessToken and account information.
 
 ## Documentation 
 
@@ -17,7 +22,7 @@ https://api.sbanken.no/Customers/swagger
 
 ## Availability
 
-In order to get access to these APIs certain requirements need to be fullfilled:
+In order to get access to these APIs certain requirements needs to be fullfilled:
 * You are a Sbanken customer
 * You have to sign up for access via https://utvikler.sbanken.no
 * You have to enable "Beta" in your personal settings
