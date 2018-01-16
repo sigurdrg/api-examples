@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Api example</title>
+        <link rel="stylesheet" href="./vendor/bootstrap-3.3.7.css">
+        <link rel="stylesheet" href="./styles/styles.css">
+    </head>
+    <body>
+        <div id="container" class="container-fluid">
+          <div id="app"></div>
+        </div>
+    </body>
+
+    <script>
+        require('babel/register');
+
+        var ReactDOM = require('react-dom');
+        var React = require('react');
+        var Main = require('./src/app.js');
+        var domNode = document.getElementById('app');
+
+        ReactDOM.render(React.createElement(Main, null), domNode);
+    </script>
+</html>
