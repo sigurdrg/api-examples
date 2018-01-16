@@ -4,13 +4,14 @@
 
 This repository provides a few examples on how to use Sbankens Open Banking APIs. These will enable you to quickly get started and get familiar with the basic concepts of authorization and API usage.
 
-### [DotNetCoreSampleApplication]
+### [DotNetCoreSampleApplication](./DotNetCoreSampleApplication/)
+
 Simple .NET Core Console Application which retrieves accessToken, customer and account information.
 
-### [NodeSampleApplication]
+### [NodeSampleApplication](./NodeSampleApplication/)
 Simple Node client which retrieves accessToken and account information.
 
-### [ElectronSampleApplication]
+### [ElectronSampleApplication](./ElectronSampleApplication/)
 Simple Electron App with an example GUI which retrives accessToken and account information
 
 ## Documentation 
