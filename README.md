@@ -23,6 +23,22 @@ https://api.sbanken.no/Bank/swagger
 
 https://api.sbanken.no/Customers/swagger
 
+## Known bugs
+
+### Swagger documentation
+
+* The Try Me-button will not work. This is because it will send an unauthenticated request.
+* In the swagger documentation for the Transfer POST request, the example payload may appear to be missing. The format of the POST request body is as follows:
+
+```
+{
+  "fromAccount": "string",
+  "toAccount": "string",
+  "message": "string",
+  "amount": 0
+}
+```
+
 
 ## Availability
 
