@@ -38,6 +38,13 @@ https://api.sbanken.no/Customers/swagger
   "amount": 0
 }
 ```
+* Swagger documentation for the Transfer request has a typo where FromAccount is mentioned twice. The second mention should be ToAccount.
+
+## FAQ
+
+### How do I find the customerId / userId?
+
+This is your social security number. The same Id which is used when you log in with BankID.
 
 
 ## Availability
