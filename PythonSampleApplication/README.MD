@@ -4,12 +4,14 @@
 * Requires Python 3
 * Requires package ``requests_oauthlib``:
 
-
-    $ pip install requests-oauthlib
-    c:> pip install requests-oauthlib
+```
+$ pip install requests-oauthlib
+c:> pip install requests-oauthlib
+```
 
 * Run the sample app:
-    
-    
-    $ python sampleapp.py
-    c:> python sampleapp.py
+
+```
+$ python sampleapp.py
+c:> python sampleapp.py
+```
