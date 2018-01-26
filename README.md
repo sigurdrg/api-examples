@@ -14,6 +14,9 @@ Simple Node client which retrieves accessToken and account information.
 ### [ElectronSampleApplication](./ElectronSampleApplication/)
 Simple Electron App with an example GUI which retrives accessToken and account information
 
+### [PythonSampleApplication](./PythonSampleApplication/)
+Python script which retrieves accessToken, customer and account information.
+
 ## Documentation 
 
 The following links provides detailed description of the REST interfaces. This includes how to construct your requests and what response to expect.
