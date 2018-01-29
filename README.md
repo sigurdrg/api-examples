@@ -19,12 +19,66 @@ Python script which retrieves accessToken, customer and account information.
 
 ## Documentation 
 
+### Swagger
+
 The following links provides detailed description of the REST interfaces. This includes how to construct your requests and what response to expect.
 
 
 https://api.sbanken.no/Bank/swagger
 
 https://api.sbanken.no/Customers/swagger
+
+### Authentication
+
+#### How to get an Access Token
+
+One must authenticate in order to get an access token. To authenticate the clientId and secret is sent to the sbanken authorization server. If valid, an access token is returned. 
+
+```
+// client credentials
+
+var clientId = "*****" // clientId obtained from Sbanken API Beta / utviklerportalen
+var secret = "****" // password
+
+// First, the application must authenticate itself with Sbanken's authorization server.
+// The basic authentication scheme is used here (https://tools.ietf.org/html/rfc2617#section-2 ) 
+
+// The clientId and secret must be base64 encoded and separated by a single colon ( : ).
+// You might have to investigate which base64 encoding-library to use depending on your choice of programming language.
+
+var basicAuthentationHeaderValue = btoa(clientId + ":" + secret);
+```
+
+To obtain the access token, send a request to the token URI with the following http headers. 
+Note: For the Authorization header, the value of the header must be prefixed with  "Basic " as shown below.
+
+```
+// host
+https://api.sbanken.no
+
+// uri
+POST /identityserver/connect/token  
+
+// headers
+Authorization: Basic Y2xpZW50aWQ6c2VjcmV0
+Accept: application/json  
+Content-Type: application/x-www-form-urlencoded
+
+// request body
+grant_type=client_credentials  
+```
+
+If the request was successful, one should get the following response:
+
+```
+{
+    "access_token": "abcdefghijklmnopqrstuvwxyz..",
+    "expires_in": 3600,
+    "token_type": "Bearer"
+}
+```
+
+
 
 ## Known bugs
 
