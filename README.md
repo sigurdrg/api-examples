@@ -11,6 +11,9 @@ Simple .NET Core Console Application which retrieves accessToken, customer and a
 ### [NodeSampleApplication](./NodeSampleApplication/)
 Simple Node client which retrieves accessToken and account information.
 
+### [JavaSampleApplication](./JavaSampleApplication/)
+Java client which retrieves accessToken and account information.
+
 ### [ElectronSampleApplication](./ElectronSampleApplication/)
 Simple Electron App with an example GUI which retrives accessToken and account information
 
