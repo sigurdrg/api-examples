@@ -17,6 +17,10 @@ Simple Electron App with an example GUI which retrives accessToken and account i
 ### [PythonSampleApplication](./PythonSampleApplication/)
 Python script which retrieves accessToken, customer and account information.
 
+### [ShellScripts](./ShellScripts/)
+Shell script examples on how to retrieve accessToken and account information
+
+
 ## Documentation 
 
 ### Swagger
