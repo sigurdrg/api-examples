@@ -21,6 +21,8 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
 ## Configuration
 
-Edit [src/config.js](./src/config.js), add your user ID and API client keys. **This is a sample application, never store these secret keys in a client application!**.
+Edit [src/config.js](./src/config.js), add your user ID and API client keys.
+
+**This is a sample application, never store these secret keys in a client application!**
 
 Images used in this sample application are taken from [pixabay.com](https://pixabay.com/) and requires no attribution.
