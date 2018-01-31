@@ -1,7 +1,7 @@
 <template lang="pug">
 #app.md-layout.md-alignment-center
   refresher
-  .md-layout-item.md-medium-size-33.md-small-size-50.md-xsmall-size-100
+  .md-layout-item.md-size-33.md-medium-size-33.md-small-size-50.md-xsmall-size-100
     customers
     bank
 </template>

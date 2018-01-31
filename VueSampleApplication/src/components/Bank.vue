@@ -2,8 +2,8 @@
 #bank(v-if="accounts.length > 0")
   md-list.md-double-line.md-elevation-1
     md-list-item(
-      v-for="(item, index) in accounts"
-      :key="index"
+      v-for="(item, i) in accounts"
+      :key="i"
       md-expand
       :md-expanded.sync="expanded"
       @click="fetchTransactions(item.accountNumber)"
@@ -13,10 +13,13 @@
         span {{ item.name }}
         span {{ item.accountNumber }}
       
-      md-list.md-dense(slot="md-expand")
+      md-list.md-dense.md-scrollbar(slot="md-expand")
+        md-list-item(v-if="transactions.length <= 0")
+          .md-list-item-text
+            span No transactions
         md-list-item(
-          v-for="(transaction, index_2) in transactions.items"
-          :key="index_2"
+          v-for="(transaction, j) in transactions"
+          :key="j"
         )
           md-icon settings_ethernet
           .md-list-item-text
@@ -46,12 +49,7 @@ export default {
         return
 
       this.$store.dispatch('Bank/transactions', accountNumber)
-        .then(list => {
-          this.transactions = list.items
-        })
-    },
-    test () {
-      alert("Fired")
+        .then(list => this.transactions = list.items)
     }
   }
 }
@@ -59,8 +57,9 @@ export default {
 
 <style lang="scss" scoped>
 #bank {
-  .transactions {
-
+  .md-scrollbar {
+    max-height: 220px;
+    overflow-y: scroll;
   }
 }
 </style>

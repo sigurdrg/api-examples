@@ -3,7 +3,7 @@
   md-card
     md-card-media-cover
       md-card-media(md-ratio="16:9")
-        img(src="@/assets/img/sbanken.jpg" alt="SBanken Logo")
+        img(src="@/assets/img/sbanken.jpg" alt="Background")
       md-card-area
         md-avatar.md-avatar.md-large
           img(src="@/assets/img/face.jpg" alt="Face")
@@ -15,19 +15,6 @@
 </template>
 
 <script>
-/*
-md-card-header
-          .md-title {{ data.firstName }} {{ data.lastName }}
-          .md-subhead
-            md-icon email
-            span {{ data.emailAddress }}
-          .md-subhead(v-for="item in data.phoneNumbers")
-            md-icon phone
-            span (+{{ item.countryCode }}) {{ item.number }}
-          .md-subhead
-            md-icon cake
-            span {{ data.dateOfBirth }}
-            */
 export default {
   name: 'Customers',
   computed: {
