@@ -14,10 +14,10 @@ Simple Node client which retrieves accessToken and account information.
 Java client which retrieves accessToken and account information.
 
 ### [ElectronSampleApplication](./ElectronSampleApplication/)
-Simple Electron App with an example GUI which retrives accessToken and account information.
+Simple Electron App with an example GUI which retrieves accessToken and account information.
 
 ### [VueSampleApplication](./VueSampleApplication/)
-Simple Vue.js App with an example GUI which retrives account information and transactions.
+Simple Vue.js App with an example GUI which retrieves account information and transactions.
 
 ### [PythonSampleApplication](./PythonSampleApplication/)
 Python script which retrieves accessToken, customer and account information.
