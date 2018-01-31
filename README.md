@@ -23,7 +23,11 @@ Simple Vue.js App with an example GUI which retrieves account information and tr
 Python script which retrieves accessToken, customer and account information.
 
 ### [ShellScripts](./ShellScripts/)
+<<<<<<< HEAD
 Shell script examples on how to retrieve accessToken and account information.
+=======
+Shell script examples on how to retrieve accessToken and account information
+>>>>>>> upstream/master
 
 
 ## Documentation 
