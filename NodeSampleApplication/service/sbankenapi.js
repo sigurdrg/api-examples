@@ -61,10 +61,55 @@ exports.getAccountDetails = (accessToken) => {
           }
         });
     });
-        
-   
 
     return promise;
 }
- 
-  
+
+exports.getAccountNumberDetails = (accountNumber, accessToken) => {
+    var accountNumberDetailsUrl = "https://api.sbanken.no/bank/api/v1/accounts/"+credentials.userid+"/"+accountNumber; //
+
+    // use accessToken to request accounts (the bearer token (accessToken) is put on the request header prior to sending the request)
+
+    var promise = new Promise(function (resolve, reject) {
+        request
+        .get(accountNumberDetailsUrl)
+        .set('Authorization',  "Bearer "+accessToken)
+        .set('Accept', 'application/json')
+        .end(function(err, res){
+          if (err || !res.ok) {
+            console.log(err);
+            reject();
+          } else {
+            console.log('yay got ' + JSON.stringify(res.body));
+            resolve(res.body);
+          }
+        });
+    });
+
+    return promise;
+}
+
+
+exports.getAccountTransactions = (accountNumber, accessToken) => {
+    var requestUrl = "https://api.sbanken.no/bank/api/v1/transactions/"+credentials.userid+"/"+accountNumber; //
+
+    // use accessToken to request accounts (the bearer token (accessToken) is put on the request header prior to sending the request)
+
+    var promise = new Promise(function (resolve, reject) {
+        request
+        .get(requestUrl)
+        .set('Authorization',  "Bearer "+accessToken)
+        .set('Accept', 'application/json')
+        .end(function(err, res){
+          if (err || !res.ok) {
+            console.log(err);
+            reject();
+          } else {
+            console.log('yay got ' + JSON.stringify(res.body));
+            resolve(res.body);
+          }
+        });
+    });
+
+    return promise;
+}

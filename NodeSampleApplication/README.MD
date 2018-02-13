@@ -5,7 +5,11 @@
 * npm run start
 
 
-Then execute a REST HTTP GET operation to the following resource: http://localhost:3001/api/data
+Then execute a REST HTTP GET operation to the following resources:
+
+* Account details: http://localhost:3001/api/data
+* Account number details: http://localhost:3001/api/account/{accountNumber}
+* Account transactions: http://localhost:3001/api/transactions/{accountNumber}
 
 ## Requirements
 
