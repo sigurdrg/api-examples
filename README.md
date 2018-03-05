@@ -94,17 +94,8 @@ If the request was successful, one should get the following response:
 ### Swagger documentation
 
 * The Try Me-button will not work. This is because it will send an unauthenticated request.
-* In the swagger documentation for the Transfer POST request, the example payload may appear to be missing. The format of the POST request body is as follows:
-
-```
-{
-  "fromAccount": "string",
-  "toAccount": "string",
-  "message": "string",
-  "amount": 0
-}
-```
-* Swagger documentation for the Transfer request has a typo where FromAccount is mentioned twice. The second mention should be ToAccount.
+* Transactions: TransactionId is still returned in Transactions V2 although not part of documentation.
+* Transactions: source will either be 0 or 1 although documentation states it should be an enum string (accountStatement or archive)
 
 ## FAQ
 
