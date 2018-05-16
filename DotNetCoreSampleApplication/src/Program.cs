@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using IdentityModel.Client;
 
@@ -23,9 +24,9 @@ namespace SampleApplication
 
              */
 
-            var clientId = "****************************";  
-            var secret = "****************************";
-            var customerId = "********************";
+            var clientId = "******************************";
+            var secret = "******************************";
+            var customerId = "*****************";
 
             /** Setup constants */
             var discoveryEndpoint = "https://api.sbanken.no/identityserver";
@@ -48,7 +49,7 @@ namespace SampleApplication
             };
 
             var discoResult = await discoClient.GetAsync();
-            
+
             if (discoResult.Error != null)
             {
                 throw new Exception(discoResult.Error);
@@ -71,6 +72,10 @@ namespace SampleApplication
             var httpClient = new HttpClient()
             {
                 BaseAddress = new Uri(apiBaseAddress),
+                DefaultRequestHeaders =
+                {
+                    { "customerId", customerId }
+                }
             };
 
             // Finally: Set the access token on the connecting client. 
@@ -78,18 +83,18 @@ namespace SampleApplication
             httpClient.SetBearerToken(tokenResponse.AccessToken);
 
             // The application retrieves the customer's information.
-            var customerResponse = await httpClient.GetAsync($"{customersBasePath}/api/v1/Customers/{customerId}");
+            var customerResponse = await httpClient.GetAsync($"{customersBasePath}/api/v1/Customers");
             var customerResult = await customerResponse.Content.ReadAsStringAsync();
 
             Trace.WriteLine($"CustomerResult:{customerResult}");
 
             // The application retrieves the customer's accounts.
-            var accountResponse = await httpClient.GetAsync($"{bankBasePath}/api/v1/Accounts/{customerId}");
+            var accountResponse = await httpClient.GetAsync($"{bankBasePath}/api/v1/Accounts");
             var accountResult = await accountResponse.Content.ReadAsStringAsync();
 
             Trace.WriteLine($"AccountResult:{accountResult}");
         }
     }
 }
-    
+
 
