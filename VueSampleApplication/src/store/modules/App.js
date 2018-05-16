@@ -2,6 +2,7 @@ import Vue from 'vue'
 import * as t from '@/store/types'
 import btoa from 'btoa'
 import {
+  USER_ID,
   CLIENT_ID,
   CLIENT_SECRET,
   ENDPOINT_IDENTITYSERVER
@@ -19,6 +20,9 @@ const mutations = {
 
     // Add global 'Authorization' header
     Vue.http.headers.common['Authorization'] = data.token_type +' '+ data.access_token
+
+    // Add global 'customerId' header
+    Vue.http.headers.common['customerId'] = USER_ID
   }
 }
 
@@ -29,9 +33,9 @@ const actions = {
       url:     ENDPOINT_IDENTITYSERVER,
       body:   'grant_type=client_credentials',
       headers: {
-        'Authorization': 'Basic ' + btoa(CLIENT_ID + ':' + CLIENT_SECRET),
+        'Authorization': 'Basic ' + btoa(encodeURIComponent(CLIENT_ID) + ':' + encodeURIComponent(CLIENT_SECRET)),
         'Accept':        'application/json',
-        'Content-Type':  'application/x-www-form-urlencoded; charset=utf-8'
+        'Content-Type':  'application/x-www-form-urlencoded;'
       }
     }).then(r => {
       return r.status == 200 ? (
