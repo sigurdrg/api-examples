@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using IdentityModel.Client;
+using Newtonsoft.Json;
 
 namespace SampleApplication
 {
@@ -91,8 +91,16 @@ namespace SampleApplication
             // The application retrieves the customer's accounts.
             var accountResponse = await httpClient.GetAsync($"{bankBasePath}/api/v1/Accounts");
             var accountResult = await accountResponse.Content.ReadAsStringAsync();
+            var accountsList = JsonConvert.DeserializeObject<AccountsList>(accountResult);
 
             Trace.WriteLine($"AccountResult:{accountResult}");
+
+            var spesificAccountResponse = await httpClient.GetAsync($"{bankBasePath}/api/v1/Accounts/{accountsList.Items[0].AccountId}");
+            var spesificAccountResult = await spesificAccountResponse.Content.ReadAsStringAsync();
+
+
+            Trace.WriteLine($"SpesificAccountResult:{spesificAccountResult}");
+
         }
     }
 }
