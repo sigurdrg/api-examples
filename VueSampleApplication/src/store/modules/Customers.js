@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import * as t from '@/store/types'
-import {
-  USER_ID,
-  ENDPOINT_CUSTOMERS
-} from '@/config'
+import { ENDPOINT_CUSTOMERS } from '@/config'
 
 const state = {
   data: null
@@ -18,7 +15,7 @@ const mutations = {
 const actions = {
   load ({commit}) {
     Vue.resource(ENDPOINT_CUSTOMERS)
-      .get({customerId: USER_ID})
+      .get()
       .then(r => {
         return r.status == 200 && !r.body.isError ? (
           commit(t.CUSTOMERS_SET_DATA, r.body.item),
