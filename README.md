@@ -101,7 +101,7 @@ If the request was successful, one should get the following response:
 ### Swagger documentation
 
 * The Try Me-button will not work. This is because it will send an unauthenticated request.
-* Transactions: TransactionId is still returned in Transactions V2 although not part of documentation.
+* Transactions: TransactionId is returned in Transactions although not part of documentation.
 * Transactions: source will either be 0 or 1 although documentation states it should be an enum string (accountStatement or archive)
 
 ## FAQ
