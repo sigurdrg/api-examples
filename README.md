@@ -28,6 +28,13 @@ Shell script examples on how to retrieve accessToken and account information.
 
 ## Documentation 
 
+# Update May 2018
+
+* We have stopped using customerId as a part of the API URL. Instead we require all API requests to include the customerId as a http header. See swagger for more information.
+* We have rolled back all APIs to start on V1
+* We have stopped using AccountNumber as part of the URL. Instead we require all Account API requests to include the AccountId as retrieved from HTTP GET /Bank/api/v1/Accounts (see powershell script example)
+* Update of IdentityServer requires Clients to form-urlencode ClientId and Secret prior to Base64-encoding the Authorization header. This is according to specification in RFC6749. See [DotNetCoreSampleApplication](./DotNetCoreSampleApplication/) (updated to IdentityModel 3.6.1 which does this automatically) and [ShellScripts](./ShellScripts/) example.
+
 ### Swagger
 
 The following links provides detailed description of the REST interfaces. This includes how to construct your requests and what response to expect.
@@ -52,10 +59,10 @@ var secret = "****" // password
 // First, the application must authenticate itself with Sbanken's authorization server.
 // The basic authentication scheme is used here (https://tools.ietf.org/html/rfc2617#section-2 ) 
 
-// The clientId and secret must be base64 encoded and separated by a single colon ( : ).
+// The clientId and secret must first be urlencoded and then base64 encoded, separated by a single colon ( : ).
 // You might have to investigate which base64 encoding-library to use depending on your choice of programming language.
 
-var basicAuthentationHeaderValue = btoa(clientId + ":" + secret);
+var basicAuthentationHeaderValue = btoa(encodeURIComponent(clientId) + ":" + encodeURIComponent(secret));
 ```
 
 To obtain the access token, send a request to the token URI with the following http headers. 

@@ -6,7 +6,11 @@ $secret = "*******"
 # -- END SETUP --
 
 $headers = @{}
-$credentials = $clientId + ":"+$secret
+$encodedClientId = [System.Web.HttpUtility]::UrlEncode($clientId) 
+$encodedSecret = [System.Web.HttpUtility]::UrlEncode($secret) 
+
+$credentials = "$($encodedClientId):$($encodedSecret)"
+
 $Bytes = [System.Text.Encoding]::UTF8.GetBytes($credentials)
 $EncodedText =[Convert]::ToBase64String($Bytes)
 
@@ -19,7 +23,21 @@ $authResponse = Invoke-RestMethod -Uri "https://api.sbanken.no/IdentityServer/co
 echo "Accounts ----"
 $authHeaders = @{}
 $authHeaders.Add("Accept", "application/json")
+$authHeaders.Add("customerId", $userid);
 $authHeaders.Add("Authorization", "Bearer "+$authResponse.access_token)
-$accountUri = "https://api.sbanken.no/Bank/api/v1/Accounts/" + $userid
+$accountUri = "https://api.sbanken.no/Bank/api/v1/Accounts"
 $response = Invoke-RestMethod -Uri $accountUri -Method GET -Headers $authHeaders
 $response
+
+
+echo "Get spesific account based on AccountId"
+$authHeaders = @{}
+$authHeaders.Add("Accept", "application/json")
+$authHeaders.Add("customerId", $userid);
+$authHeaders.Add("Authorization", "Bearer "+$authResponse.access_token)
+$accountUri = "https://api.sbanken.no/Bank/api/v1/Accounts/" +  $response.items[0].accountId
+$response = Invoke-RestMethod -Uri $accountUri -Method GET -Headers $authHeaders
+$response
+
+
+
