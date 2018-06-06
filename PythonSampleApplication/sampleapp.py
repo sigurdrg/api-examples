@@ -1,5 +1,7 @@
 from oauthlib.oauth2 import BackendApplicationClient
+import requests
 from requests_oauthlib import OAuth2Session
+import urllib.parse
 
 
 def enable_debug_logging():
@@ -14,21 +16,25 @@ def enable_debug_logging():
     requests_log.propagate = True
 
 
-def create_authenticated_http_session(client_id, client_secret):
+def create_authenticated_http_session(client_id, client_secret) -> requests.Session:
     oauth2_client = BackendApplicationClient(client_id=client_id)
     session = OAuth2Session(client=oauth2_client)
     session.fetch_token(
         token_url='https://api.sbanken.no/identityserver/connect/token',
         client_id=client_id,
-        client_secret=client_secret
+        client_secret=urllib.parse.quote(client_secret)
     )
     return session
 
 
-def get_customer_information(http_session, customerid):
-    response = http_session.get(
-        "https://api.sbanken.no/customers/api/v1/Customers/{}".format(customerid)
-    ).json()
+def get_customer_information(http_session: requests.Session, customerid):
+    response_object = http_session.get(
+        "https://api.sbanken.no/customers/api/v1/Customers",
+        headers={'customerId': customerid}
+    )
+    print(response_object)
+    print(response_object.text)
+    response = response_object.json()
 
     if not response["isError"]:
         return response["item"]
@@ -36,9 +42,10 @@ def get_customer_information(http_session, customerid):
         raise RuntimeError("{} {}".format(response["errorType"], response["errorMessage"]))
 
 
-def get_accounts(http_session, customerid):
+def get_accounts(http_session: requests.Session, customerid):
     response = http_session.get(
-        "https://api.sbanken.no/bank/api/v1/Accounts/{}".format(customerid)
+        "https://api.sbanken.no/bank/api/v1/Accounts",
+        headers={'customerId': customerid}
     ).json()
 
     if not response["isError"]:
