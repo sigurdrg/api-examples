@@ -2,6 +2,18 @@ from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 
 
+def enable_debug_logging():
+    import logging
+
+    import http.client
+    http.client.HTTPConnection.debuglevel = 1
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
+    requests_log = logging.getLogger("requests.packages.urllib3")
+    requests_log.setLevel(logging.DEBUG)
+    requests_log.propagate = True
+
+
 def create_authenticated_http_session(client_id, client_secret):
     oauth2_client = BackendApplicationClient(client_id=client_id)
     session = OAuth2Session(client=oauth2_client)
@@ -36,6 +48,7 @@ def get_accounts(http_session, customerid):
 
 
 def main():
+    # enable_debug_logging()
     import api_settings
     import pprint
 
