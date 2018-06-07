@@ -46,8 +46,9 @@ public class SbankenClient {
 
     private static String getAccountInfo(HttpRequestFactory requestFactory, String userId, String token) throws IOException {
         //now we have token and can qury sbanken api
-        HttpRequest serviceRequest = requestFactory.buildGetRequest(new GenericUrl(ACCOUNT_SERVICE_URL + userId));
+        HttpRequest serviceRequest = requestFactory.buildGetRequest(new GenericUrl(ACCOUNT_SERVICE_URL));
         HttpHeaders headers = new HttpHeaders();
+        headers.set("customerId", userId);
         headers.setAccept("application/json");
         headers.setAuthorization("Bearer " + token);
         serviceRequest.setHeaders(headers);
