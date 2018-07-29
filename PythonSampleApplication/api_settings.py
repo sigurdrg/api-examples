@@ -14,8 +14,8 @@ be loaded automatically. If not, you can use
 2. Uncomment the two lines below to load the environment variables in `.env`.
 """
 
-# from dotenv import load_dotenv
-# load_dotenv()
+# from dotenv import load_dotenv, find_dotenv
+# load_dotenv(find_dotenv())
 
 # This is your social security number. The same Id which is used when you log in with BankID.
 CUSTOMERID = environ['CUSTOMERID']
