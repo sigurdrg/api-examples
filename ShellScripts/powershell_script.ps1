@@ -18,7 +18,7 @@ $headers.Add("Authorization", "Basic "+$EncodedText)
 $headers.Add("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
 $headers.Add("Accept", "application/json")
 $postParams = @{grant_type='client_credentials'}
-$authResponse = Invoke-RestMethod -Uri "https://api.sbanken.no/IdentityServer/connect/token" -Method POST -Headers $headers -Body $postParams
+$authResponse = Invoke-RestMethod -Uri "https://auth.sbanken.no/IdentityServer/connect/token" -Method POST -Headers $headers -Body $postParams
 
 echo "Accounts ----"
 $authHeaders = @{}
