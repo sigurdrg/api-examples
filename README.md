@@ -28,6 +28,11 @@ Shell script examples on how to retrieve accessToken and account information.
 
 ## Documentation 
 
+# Update September 2018
+
+* Changed authentication endpoint from https://api.sbanken.no/identityserver to https://auth.sbanken.no/identityserver
+
+
 # Update May 2018
 
 * We have stopped using customerId as a part of the API URL. Instead we require all API requests to include the customerId as a http header. See swagger for more information.
@@ -70,7 +75,7 @@ Note: For the Authorization header, the value of the header must be prefixed wit
 
 ```
 // host
-https://api.sbanken.no
+https://auth.sbanken.no
 
 // uri
 POST /identityserver/connect/token  
