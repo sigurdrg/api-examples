@@ -6,7 +6,7 @@ var btoa = require('btoa');
 var credentials = require('./credentials');
 
 exports.getAccessToken = () => {
-    var identityServerUrl = "https://api.sbanken.no/identityserver/connect/token"; // access token endpoint
+  var identityServerUrl = "https://auth.sbanken.no/identityserver/connect/token"; // access token endpoint
     
     var clientId = credentials.clientid; // application key received from API Beta in the internetbank
     var secret = credentials.secret; // password received from API Beta in the internetbank
