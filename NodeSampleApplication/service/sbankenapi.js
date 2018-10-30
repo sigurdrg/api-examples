@@ -6,12 +6,12 @@ var btoa = require('btoa');
 var credentials = require('./credentials');
 
 exports.getAccessToken = () => {
-  var identityServerUrl = "https://auth.sbanken.no/identityserver/connect/token"; // access token endpoint
+    var identityServerUrl = "https://auth.sbanken.no/identityserver/connect/token"; // access token endpoint
     
     var clientId = credentials.clientid; // application key received from API Beta in the internetbank
     var secret = credentials.secret; // password received from API Beta in the internetbank
      
-    var basicAuth = btoa(clientId + ":" + secret); // create basicAuth header value according to Oauth 2.0 standard
+    var basicAuth = btoa(encodeURIComponent(clientId) + ":" + encodeURIComponent(secret)); // create basicAuth header value according to Oauth 2.0 standard
      
     var accessToken;
       
@@ -25,6 +25,7 @@ exports.getAccessToken = () => {
         .send('grant_type=client_credentials')
         .set('Authorization',  "Basic "+basicAuth)
         .set('Accept', 'application/json')
+        .set('customerId', credentials.userid)
         .end(function(err, res){
           if (err || !res.ok) {
             console.log(err);
@@ -42,7 +43,7 @@ exports.getAccessToken = () => {
 }
 
 exports.getAccountDetails = (accessToken) => {
-    var accountServiceUrl = "https://api.sbanken.no/bank/api/v1/accounts/"+credentials.userid; //
+    var accountServiceUrl = "https://api.sbanken.no/bank/api/v1/accounts/"; //
 
     // use accessToken to request accounts (the bearer token (accessToken) is put on the request header prior to sending the request)
 
@@ -51,6 +52,7 @@ exports.getAccountDetails = (accessToken) => {
         .get(accountServiceUrl)
         .set('Authorization',  "Bearer "+accessToken)
         .set('Accept', 'application/json')
+        .set('customerId', credentials.userid)
         .end(function(err, res){
           if (err || !res.ok) {
             console.log(err);
@@ -65,8 +67,8 @@ exports.getAccountDetails = (accessToken) => {
     return promise;
 }
 
-exports.getAccountNumberDetails = (accountNumber, accessToken) => {
-    var accountNumberDetailsUrl = "https://api.sbanken.no/bank/api/v1/accounts/"+credentials.userid+"/"+accountNumber; //
+exports.getAccountNumberDetails = (accountId, accessToken) => {
+    var accountNumberDetailsUrl = "https://api.sbanken.no/bank/api/v1/accounts/"+accountId; //
 
     // use accessToken to request accounts (the bearer token (accessToken) is put on the request header prior to sending the request)
 
@@ -75,6 +77,7 @@ exports.getAccountNumberDetails = (accountNumber, accessToken) => {
         .get(accountNumberDetailsUrl)
         .set('Authorization',  "Bearer "+accessToken)
         .set('Accept', 'application/json')
+        .set('customerId', credentials.userid)
         .end(function(err, res){
           if (err || !res.ok) {
             console.log(err);
@@ -90,8 +93,8 @@ exports.getAccountNumberDetails = (accountNumber, accessToken) => {
 }
 
 
-exports.getAccountTransactions = (accountNumber, accessToken) => {
-    var requestUrl = "https://api.sbanken.no/bank/api/v1/transactions/"+credentials.userid+"/"+accountNumber; //
+exports.getAccountTransactions = (accountId, accessToken) => {
+    var requestUrl = "https://api.sbanken.no/bank/api/v1/transactions/"+accountId; //
 
     // use accessToken to request accounts (the bearer token (accessToken) is put on the request header prior to sending the request)
 
@@ -100,6 +103,7 @@ exports.getAccountTransactions = (accountNumber, accessToken) => {
         .get(requestUrl)
         .set('Authorization',  "Bearer "+accessToken)
         .set('Accept', 'application/json')
+        .set('customerId', credentials.userid)
         .end(function(err, res){
           if (err || !res.ok) {
             console.log(err);
