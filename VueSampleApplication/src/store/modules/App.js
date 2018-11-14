@@ -30,7 +30,7 @@ const actions = {
   auth ({commit}) {
     return Vue.http({
       method: 'post',
-      url:     ENDPOINT_IDENTITYSERVER,
+      url:    ENDPOINT_IDENTITYSERVER,
       body:   'grant_type=client_credentials',
       headers: {
         'Authorization': 'Basic ' + btoa(encodeURIComponent(CLIENT_ID) + ':' + encodeURIComponent(CLIENT_SECRET)),
