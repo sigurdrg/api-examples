@@ -11,6 +11,9 @@ import com.google.api.client.http.apache.ApacheHttpTransport;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.Base64;
 
 /**
@@ -19,7 +22,7 @@ import java.util.Base64;
  */
 public class SbankenClient {
 
-    private static final String IDENTITY_SERVER_URL = "https://api.sbanken.no/identityserver/connect/token";
+    private static final String IDENTITY_SERVER_URL = "https://auth.sbanken.no/identityserver/connect/token";
     private static final String ACCOUNT_SERVICE_URL = "https://api.sbanken.no/bank/api/v1/accounts/";
     private final static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -57,10 +60,9 @@ public class SbankenClient {
         return respStr;
     }
 
-    private static String getBase64AuthString(String clientId, String secret) {
-        String basicAuth = new String(Base64.getEncoder().encode(
-                new StringBuilder(256).append(clientId).append(':').append(secret).toString().getBytes()));
-        return basicAuth;
+    private static String getBase64AuthString(String clientId, String secret) throws UnsupportedEncodingException {
+        Charset charSet = Charset.forName("UTF-8");
+        return new String(Base64.getEncoder().encode(String.format("%s:%s", URLEncoder.encode(clientId, charSet.name()), URLEncoder.encode(secret, charSet.name())).getBytes(charSet)), charSet);
     }
 
     private static String getAccessToken(HttpRequestFactory requestFactory, String basicAuth) throws IOException {
