@@ -28,6 +28,9 @@ Shell script examples on how to retrieve accessToken and account information.
 
 ## Documentation 
 
+# Update November 2018
+* Added documentation for [transactionTypes](./Documentation/) for the TransactionsAPI
+
 # Update September 2018
 
 * Changed authentication endpoint from https://api.sbanken.no/identityserver to https://auth.sbanken.no/identityserver

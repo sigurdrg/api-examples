@@ -8,19 +8,19 @@
   },
   "dependencies": {
     "btoa": "^1.2.1",
-    "vue": "^2.5.16",
+    "vue": "^2.5.17",
     "vue-material": "^1.0.0-beta-10.2",
-    "vue-resource": "^1.5.0",
+    "vue-resource": "^1.5.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.10",
-    "@vue/cli-service": "^3.0.0-beta.10",
-    "node-sass": "^4.7.2",
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "node-sass": "^4.9.3",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.5.17"
   },
   "babel": {
     "presets": [
