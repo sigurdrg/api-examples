@@ -33,7 +33,7 @@ def get_auth_token(auth_url, client_id, secret):
     auth_token = r.json()['access_token']
     return auth_token
     
-    def get_accounts(accounts_url, auth_token, customer_id):
+def get_accounts(accounts_url, auth_token, customer_id):
     headers = {
         'customerId': customer_id,
         'Authorization': 'Bearer {}'.format(auth_token)
