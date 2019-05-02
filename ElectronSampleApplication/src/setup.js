@@ -3,13 +3,12 @@
 
 export default function setup()  {
    
-  const customerId = "************";
-  
-  const config = {
+  const config = {       
     identityServerUrl : "https://auth.sbanken.no/identityserver/connect/token",
-    accountServiceUrl : "https://api.sbanken.no/bank/api/v1/accounts/"+customerId,
+    accountServiceUrl : "https://api.sbanken.no/bank/api/v1/accounts",
     clientId : "************************",
-    secret : "************************"
+    secret : "************************",
+    customerId : "************",
   };
 
   return config;
